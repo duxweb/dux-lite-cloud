@@ -20,12 +20,12 @@ use ZipStream\ZipStream;
 class PushCommand extends Command
 {
 
-    protected static $defaultName = 'push';
-    protected static $defaultDescription = 'Release the module version';
-
     protected function configure(): void
     {
-        $this->addArgument(
+        $this
+            ->setName('push')
+            ->setDescription('Release the module version')
+        ->addArgument(
             'app',
             InputArgument::REQUIRED,
             'please enter the app name'

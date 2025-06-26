@@ -15,12 +15,12 @@ use Symfony\Component\Console\Output\OutputInterface;
 class UpdateCommand extends Command
 {
 
-    protected static $defaultName = 'update';
-    protected static $defaultDescription = 'Update the application';
-
     protected function configure(): void
     {
-        $this->addArgument(
+        $this
+            ->setName('app:update')
+            ->setDescription('Update the application')
+        ->addArgument(
             'name',
             InputArgument::OPTIONAL,
             'please enter the app name'

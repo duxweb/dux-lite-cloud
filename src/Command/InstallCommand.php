@@ -16,12 +16,12 @@ use Symfony\Component\Console\Output\OutputInterface;
 class InstallCommand extends Command
 {
 
-    protected static $defaultName = 'install';
-    protected static $defaultDescription = 'Installation application';
-
     protected function configure(): void
     {
-        $this->addArgument(
+        $this
+            ->setName('app:install')
+            ->setDescription('Installation application')
+        ->addArgument(
             'name',
             InputArgument::REQUIRED,
             'please enter the app name'

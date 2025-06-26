@@ -15,12 +15,12 @@ use Symfony\Component\Console\Output\OutputInterface;
 class PackageInstallCommand extends Command
 {
 
-    protected static $defaultName = 'package:install';
-    protected static $defaultDescription = 'Installation package';
-
     protected function configure(): void
     {
-        $this->addArgument(
+        $this
+            ->setName('package:install')
+            ->setDescription('Installation package')
+        ->addArgument(
             'name',
             InputArgument::REQUIRED,
             'please enter the package name'

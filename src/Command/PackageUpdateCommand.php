@@ -15,12 +15,12 @@ use Symfony\Component\Console\Output\OutputInterface;
 class PackageUpdateCommand extends Command
 {
 
-    protected static $defaultName = 'package:update';
-    protected static $defaultDescription = 'updated package';
-
     protected function configure(): void
     {
-        $this->addArgument(
+        $this
+            ->setName('package:update')
+            ->setDescription('updated package')
+        ->addArgument(
             'name',
             InputArgument::REQUIRED,
             'please enter the package name'

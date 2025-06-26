@@ -13,13 +13,10 @@ use Symfony\Component\Process\Process;
 
 class ComposerCommand extends Command
 {
-
-    protected static $defaultName = 'package:composer';
-    protected static $defaultDescription = 'composer console';
-
     protected function configure(): void
     {
         $this
+            ->setName('package:composer')
             ->setDescription('Execute execute commands via PHP.')
             ->addArgument('cmd', InputArgument::IS_ARRAY | InputArgument::REQUIRED, 'The execute command to run.')
             ->setHelp('This command allows you to run yarn commands...');

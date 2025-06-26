@@ -17,12 +17,12 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 class PackageUninstallCommand extends Command
 {
 
-    protected static $defaultName = 'package:uninstall';
-    protected static $defaultDescription = 'Uninstall package';
-
     protected function configure(): void
     {
-        $this->addArgument(
+        $this
+            ->setName('package:uninstall')
+            ->setDescription('Uninstall package')
+        ->addArgument(
             'name',
             InputArgument::REQUIRED,
             'please enter the package name'
