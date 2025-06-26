@@ -1,7 +1,7 @@
 {
     "name": "duxweb/dux-lite-cloud",
     "description": "DuxLite v2 cloud service expansion package",
-    "type": "duxlite-plugin",
+    "type": "composer-plugin",
     "license": "MIT",
     "autoload": {
         "psr-4": {
@@ -9,9 +9,11 @@
         }
     },
     "extra": {
-        "providers": [
-            "Core\\Cloud\\CloudServiceProvider"
-        ]
+        "duxlite": {
+            "providers": [
+                "Core\\Cloud\\CloudServiceProvider"
+            ]
+        }
     },
     "authors": [
         {
@@ -19,10 +21,10 @@
             "email": "admin@dux.plus"
         }
     ],
-    "require-dev": {
-        "duxweb/dux-lite": "^2.0.2"
-    },
     "require": {
         "maennchen/zipstream-php": "^3.1"
+    },
+    "require-dev": {
+        "duxweb/dux-lite": "^2.0.2"
     }
 }
