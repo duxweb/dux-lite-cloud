@@ -37,8 +37,10 @@ class CloudServiceProvider implements PluginProvider
 
     public static function boot(Bootstrap $bootstrap): void
     {
-        foreach (self::getCommands() as $command) {
-            $bootstrap->command->add(new $command());
+        if (isset($bootstrap->command)) {
+            foreach (self::getCommands() as $command) {
+                $bootstrap->command->add(new $command());
+            }
         }
     }
 
