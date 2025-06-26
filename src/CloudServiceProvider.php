@@ -33,13 +33,13 @@ class CloudServiceProvider implements PluginProvider
 
     public static function register(Bootstrap $bootstrap): void
     {
-        foreach (self::getCommands() as $command) {
-            $bootstrap->command->add(new $command());
-        }
     }
 
     public static function boot(Bootstrap $bootstrap): void
     {
+        foreach (self::getCommands() as $command) {
+            $bootstrap->command->add(new $command());
+        }
     }
 
     public static function apps(): array
