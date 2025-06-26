@@ -9,6 +9,7 @@
         }
     },
     "extra": {
+        "class": "Core\\Cloud\\Plugin",
         "duxlite": {
             "providers": [
                 "Core\\Cloud\\CloudServiceProvider"
@@ -22,9 +23,10 @@
         }
     ],
     "require": {
+        "composer-plugin-api": "^2.0",
         "maennchen/zipstream-php": "^3.1"
     },
     "require-dev": {
-        "duxweb/dux-lite": "^2.0.2"
+        "duxweb/dux-lite": "^2.0.2-dev"
     }
 }

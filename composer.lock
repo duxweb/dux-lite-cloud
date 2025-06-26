@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "35f4febb1261bd19e1194acb43d72b95",
+    "content-hash": "1224ef1ed4311e8623e26fa038149abb",
     "packages": [
         {
             "name": "maennchen/zipstream-php",
@@ -747,16 +747,16 @@
         },
         {
             "name": "duxweb/dux-lite",
-            "version": "v2.0.2",
+            "version": "v2.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/duxweb/dux-lite.git",
-                "reference": "42016e026a6ae1bf79307bc0dfd0119f59a9876f"
+                "reference": "b3d44ae108a3210cadba24f9adb3d865531b3737"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/duxweb/dux-lite/zipball/42016e026a6ae1bf79307bc0dfd0119f59a9876f",
-                "reference": "42016e026a6ae1bf79307bc0dfd0119f59a9876f",
+                "url": "https://api.github.com/repos/duxweb/dux-lite/zipball/b3d44ae108a3210cadba24f9adb3d865531b3737",
+                "reference": "b3d44ae108a3210cadba24f9adb3d865531b3737",
                 "shasum": ""
             },
             "require": {
@@ -795,17 +795,19 @@
                 "symfony/lock": "^7.1",
                 "symfony/process": "^7.1",
                 "symfony/var-dumper": "^7.1",
-                "tuupola/slim-basic-auth": "^3.4",
+                "tuupola/slim-basic-auth": "^2.1",
                 "vlucas/phpdotenv": "^5.6",
                 "vlucas/valitron": "^1.4",
                 "willdurand/negotiation": "^3.1",
                 "zoujingli/ip2region": "^2.0"
             },
             "require-dev": {
+                "composer/composer": "^2.8",
                 "mockery/mockery": "^1.6",
                 "pestphp/pest": "^3.5",
                 "pestphp/pest-plugin-stressless": "^3.0"
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -835,7 +837,7 @@
                 "issues": "https://github.com/duxweb/dux-lite/issues",
                 "source": "https://github.com/duxweb/dux-lite"
             },
-            "time": "2025-06-26T05:03:50+00:00"
+            "time": "2025-06-26T06:15:54+00:00"
         },
         {
             "name": "eftec/bladeone",
@@ -2510,6 +2512,52 @@
                 "source": "https://github.com/laravel/framework"
             },
             "time": "2025-05-11T20:47:08+00:00"
+        },
+        {
+            "name": "ircmaxell/password-compat",
+            "version": "v1.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ircmaxell/password_compat.git",
+                "reference": "5c5cde8822a69545767f7c7f3058cb15ff84614c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ircmaxell/password_compat/zipball/5c5cde8822a69545767f7c7f3058cb15ff84614c",
+                "reference": "5c5cde8822a69545767f7c7f3058cb15ff84614c",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.*"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "lib/password.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Anthony Ferrara",
+                    "email": "ircmaxell@php.net",
+                    "homepage": "http://blog.ircmaxell.com"
+                }
+            ],
+            "description": "A compatibility library for the proposed simplified password hashing algorithm: https://wiki.php.net/rfc/password_hash",
+            "homepage": "https://github.com/ircmaxell/password_compat",
+            "keywords": [
+                "hashing",
+                "password"
+            ],
+            "support": {
+                "issues": "https://github.com/ircmaxell/password_compat/issues",
+                "source": "https://github.com/ircmaxell/password_compat/tree/v1.0"
+            },
+            "time": "2014-11-20T16:49:30+00:00"
         },
         {
             "name": "jimtools/jwt-auth",
@@ -6795,168 +6843,31 @@
             "time": "2025-05-15T09:04:05+00:00"
         },
         {
-            "name": "tuupola/callable-handler",
-            "version": "1.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/tuupola/callable-handler.git",
-                "reference": "0bc7b88630ca753de9aba8f411046856f5ca6f8c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/tuupola/callable-handler/zipball/0bc7b88630ca753de9aba8f411046856f5ca6f8c",
-                "reference": "0bc7b88630ca753de9aba8f411046856f5ca6f8c",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.1|^8.0",
-                "psr/http-server-middleware": "^1.0"
-            },
-            "require-dev": {
-                "overtrue/phplint": "^1.0",
-                "phpunit/phpunit": "^7.0|^8.0|^9.0",
-                "squizlabs/php_codesniffer": "^3.2",
-                "tuupola/http-factory": "^0.4.0|^1.0",
-                "zendframework/zend-diactoros": "^1.6.0|^2.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Tuupola\\Middleware\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Mika Tuupola",
-                    "email": "tuupola@appelsiini.net",
-                    "homepage": "https://appelsiini.net/",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Compatibility layer for PSR-7 double pass and PSR-15 middlewares.",
-            "homepage": "https://github.com/tuupola/callable-handler",
-            "keywords": [
-                "middleware",
-                "psr-15",
-                "psr-7"
-            ],
-            "support": {
-                "issues": "https://github.com/tuupola/callable-handler/issues",
-                "source": "https://github.com/tuupola/callable-handler/tree/1.1.0"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/tuupola",
-                    "type": "github"
-                }
-            ],
-            "time": "2020-09-09T08:31:54+00:00"
-        },
-        {
-            "name": "tuupola/http-factory",
-            "version": "1.4.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/tuupola/http-factory.git",
-                "reference": "ae3f8fbdd31cf2f1bbe920b38963c5e4d1e9c454"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/tuupola/http-factory/zipball/ae3f8fbdd31cf2f1bbe920b38963c5e4d1e9c454",
-                "reference": "ae3f8fbdd31cf2f1bbe920b38963c5e4d1e9c454",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.1|^8.0",
-                "psr/http-factory": "^1.0"
-            },
-            "conflict": {
-                "nyholm/psr7": "<1.0"
-            },
-            "provide": {
-                "psr/http-factory-implementation": "^1.0"
-            },
-            "require-dev": {
-                "http-interop/http-factory-tests": "^0.9.0",
-                "overtrue/phplint": "^3.0",
-                "phpunit/phpunit": "^7.0|^8.0|^9.0",
-                "squizlabs/php_codesniffer": "^3.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Tuupola\\Http\\Factory\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Mika Tuupola",
-                    "email": "tuupola@appelsiini.net",
-                    "homepage": "https://appelsiini.net/",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Lightweight autodiscovering PSR-17 HTTP factories",
-            "homepage": "https://github.com/tuupola/http-factory",
-            "keywords": [
-                "http",
-                "psr-17",
-                "psr-7"
-            ],
-            "support": {
-                "issues": "https://github.com/tuupola/http-factory/issues",
-                "source": "https://github.com/tuupola/http-factory/tree/1.4.0"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/tuupola",
-                    "type": "github"
-                }
-            ],
-            "time": "2021-09-14T12:46:25+00:00"
-        },
-        {
             "name": "tuupola/slim-basic-auth",
-            "version": "3.4.0",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tuupola/slim-basic-auth.git",
-                "reference": "4f3061cd1632a28aa7342495011b3467fe0fe1d1"
+                "reference": "76947126cc75db77ef93f6eeba1dcc105a2d5f88"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tuupola/slim-basic-auth/zipball/4f3061cd1632a28aa7342495011b3467fe0fe1d1",
-                "reference": "4f3061cd1632a28aa7342495011b3467fe0fe1d1",
+                "url": "https://api.github.com/repos/tuupola/slim-basic-auth/zipball/76947126cc75db77ef93f6eeba1dcc105a2d5f88",
+                "reference": "76947126cc75db77ef93f6eeba1dcc105a2d5f88",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.2|^8.0",
-                "psr/http-message": "^1.0.1|^2.0",
-                "psr/http-server-middleware": "^1.0",
-                "tuupola/callable-handler": "^0.3.0|^0.4.0|^1.0",
-                "tuupola/http-factory": "^0.4.0|^1.0.2"
+                "ircmaxell/password-compat": "^1.0"
             },
             "require-dev": {
-                "equip/dispatch": "^2.0",
-                "laminas/laminas-diactoros": "^1.3|^2.0|^3.0",
-                "overtrue/phplint": "^3.0|^4.0|^5.0|^6.0",
-                "phpstan/phpstan": "^1.11",
-                "phpunit/phpunit": "^8.5.30|^9.0",
-                "rector/rector": "^0.14.5",
-                "symplify/easy-coding-standard": "^11.1"
+                "phpunit/phpunit": "~4.3",
+                "squizlabs/php_codesniffer": "^2.3",
+                "zendframework/zend-diactoros": "^1.3"
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Tuupola\\Middleware\\": "src"
+                    "Slim\\Middleware\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -6967,22 +6878,21 @@
                 {
                     "name": "Mika Tuupola",
                     "email": "tuupola@appelsiini.net",
-                    "homepage": "https://appelsiini.net/"
+                    "homepage": "http://www.appelsiini.net/"
                 }
             ],
-            "description": "PSR-7 and PSR-15 HTTP Basic Authentication Middleware",
-            "homepage": "https://appelsiini.net/projects/slim-basic-auth",
+            "description": "PSR-7 HTTP Basic Authentication Middleware",
+            "homepage": "http://www.appelsiini.net/projects/slim-basic-auth",
             "keywords": [
                 "auth",
                 "middleware",
-                "psr-15",
                 "psr-7"
             ],
             "support": {
                 "issues": "https://github.com/tuupola/slim-basic-auth/issues",
-                "source": "https://github.com/tuupola/slim-basic-auth/tree/3.4.0"
+                "source": "https://github.com/tuupola/slim-basic-auth/tree/2.x"
             },
-            "time": "2024-10-01T09:13:06+00:00"
+            "time": "2016-09-04T11:09:35+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -7364,7 +7274,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {},
+    "stability-flags": {
+        "duxweb/dux-lite": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {},
