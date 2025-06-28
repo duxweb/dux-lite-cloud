@@ -10,7 +10,7 @@ use Symfony\Component\Process\Process;
 
 class Composer
 {
-    public static function run(array $composerCommand, OutputInterface $output): void
+    public static function run(array|string $composerCommand, OutputInterface $output): void
     {
         $workingDirectory = base_path();
         $localComposerPath = $workingDirectory . '/vendor/bin/composer';
