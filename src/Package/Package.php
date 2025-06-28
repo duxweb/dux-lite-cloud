@@ -2,7 +2,9 @@
 
 namespace Core\Cloud\Package;
 
+use Core\App;
 use Core\Cloud\Service\ConfigService;
+use Core\Config\TomlWriter;
 use Core\Handlers\Exception;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
@@ -59,7 +61,7 @@ class Package
         $packageFile = $packageDir . '/' . $data['md5'] . '.zip';
 
         $packageFileDir = ConfigService::getTempDir() . '/' . $data['md5'];
-        $appDir = $packageFileDir . '/app';
+        $appDir = $packageFileDir . '/php';
         $jsDir = $packageFileDir . '/js';
         $appConfigFile = $appDir . '/app.json';
         $configFile = $packageFileDir . '/config.toml';
@@ -256,13 +258,12 @@ class Package
         if (!$apps) {
             return;
         }
-        $configFile = config_path('app.toml');
-        $conf = Config::load($configFile);
+        $conf = App::config("app");
         $registers = $conf->get("registers", []);
         if (!$remove) {
             foreach ($apps as $key => $app) {
                 $app = ucfirst($app);
-                $name = "\\App\\$app\\App";
+                $name = "App\\$app\\App";
                 if (in_array($name, (array)$registers)) {
                     continue;
                 }
@@ -272,7 +273,7 @@ class Package
             foreach ($registers as $key => $vo) {
                 foreach ($apps as $app) {
                     $app = ucfirst($app);
-                    $name = "\\App\\$app\\App";
+                    $name = "App\\$app\\App";
                     if ($name == $vo) {
                         unset($registers[$key]);
                     }
@@ -282,7 +283,7 @@ class Package
 
         $output->writeln('Configuring Application Injection');
         $conf->set("registers", $registers);
-        $conf->toFile($configFile);
+        $conf->toFile(config_path('app.toml'), new TomlWriter());
     }
 
     public static function getJson(string $file): array
@@ -331,11 +332,15 @@ class Package
             $response = $e->getResponse();
             $content = $response?->getBody()?->getContents();
         }
-        if ($response->getStatusCode() == 401) {
+        if (!$response) {
+            throw new Exception('[CLOUD] Server connection failed');
+        }
+
+        if ($response?->getStatusCode() == 401) {
             throw new Exception('[CLOUD] User unique key has been invalidated, ' . ConfigService::getDocumentationUrl() . ' to retrieve it');
         }
         $responseData = json_decode($content ?: '', true);
-        if ($response->getStatusCode() !== 200) {
+        if ($response?->getStatusCode() !== 200) {
             throw new Exception('[CLOUD] ' . $response->getStatusCode() . ' ' . ($responseData['message'] ?: 'Server connection failed'));
         }
 

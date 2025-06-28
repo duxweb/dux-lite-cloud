@@ -158,6 +158,7 @@ class PushCommand extends Command
             }
         }
 
+        $io->newLine();
         $io->success('Publish Application Success');
         return Command::SUCCESS;
     }
