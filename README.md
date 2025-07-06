@@ -102,16 +102,6 @@ composer require duxweb/dux-lite-cloud
 3. 系统会自动生成或更新模块目录下的 `CHANGELOG.md` 文件
 4. 自动打包并上传到云端仓库
 
-**更新日志输入示例**:
-```
-Please enter the changelog for this version (press Enter twice to finish, or leave empty for default):
-> - 新增用户权限管理功能
-> - 修复登录状态检查bug
-> - 优化数据库查询性能
->
->
-```
-
 #### Composer命令
 ```bash
 # 执行composer命令

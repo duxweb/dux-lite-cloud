@@ -53,19 +53,18 @@ class PushCommand extends Command
         }
 
         $output->writeln('current version number: ' . $config['version']);
-        $version = $io->ask('new version number: ');
+        $version = $io->ask('new version number');
         if (!$version) {
             $io->error('Version number not entered');
             return Command::FAILURE;
         }
 
-        // 获取更新日志
-        $io->writeln('Please enter the changelog for this version (press Enter twice to finish, or leave empty for default):');
+        $io->writeln('Press Enter twice to finish, or leave empty for default');
         $changelogLines = [];
         $emptyLineCount = 0;
 
         while (true) {
-            $line = $io->ask('> ');
+            $line = $io->ask('please enter the changelog');
 
             if (empty($line)) {
                 $emptyLineCount++;
@@ -75,19 +74,19 @@ class PushCommand extends Command
                 $changelogLines[] = '';
             } else {
                 $emptyLineCount = 0;
+                if (!str_starts_with(trim($line), '-')) {
+                    $line = '- ' . trim($line);
+                }
                 $changelogLines[] = $line;
             }
         }
 
-        // 处理输入的更新日志
         $changelog = trim(implode("\n", $changelogLines));
 
-        // 如果没有输入更新日志，使用默认值
         if (empty($changelog)) {
             $changelog = '- Update';
         }
 
-        // 生成或更新 CHANGELOG.md
         $this->updateChangelog($app, $version, $changelog);
         $io->success('Changelog updated successfully');
 
