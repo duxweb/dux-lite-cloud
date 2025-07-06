@@ -23,7 +23,7 @@
         }
     ],
     "require": {
-        "duxweb/dux-lite": "^2.0.3",
+        "duxweb/dux-lite": "^2.0.10",
         "composer-plugin-api": "^2.0",
         "maennchen/zipstream-php": "^3.1"
     },

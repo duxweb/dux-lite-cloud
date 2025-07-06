@@ -7,12 +7,12 @@ namespace Core\Cloud;
 use Core\Bootstrap;
 use Core\Cloud\Command\ComposerCommand;
 use Core\Cloud\Command\InstallCommand;
-use Core\Cloud\Command\PackageInstallCommand;
-use Core\Cloud\Command\PackageUninstallCommand;
-use Core\Cloud\Command\PackageUpdateCommand;
-use Core\Cloud\Command\PushCommand;
 use Core\Cloud\Command\UninstallCommand;
 use Core\Cloud\Command\UpdateCommand;
+use Core\Cloud\Command\PushCommand;
+use Core\Cloud\Command\AppUninstallCommand;
+use Core\Cloud\Command\AppInstallCommand;
+use Core\Cloud\Command\AppUpdateCommand;
 use Core\Plugin\PluginProvider;
 
 class CloudServiceProvider implements PluginProvider
@@ -21,13 +21,15 @@ class CloudServiceProvider implements PluginProvider
     {
         return [
             ComposerCommand::class,
-            InstallCommand::class,
-            PackageInstallCommand::class,
-            PackageUninstallCommand::class,
-            PackageUpdateCommand::class,
-            PushCommand::class,
-            UninstallCommand::class,
             UpdateCommand::class,
+            PushCommand::class,
+
+            InstallCommand::class,
+            UninstallCommand::class,
+
+            AppInstallCommand::class,
+            AppUpdateCommand::class,
+            AppUninstallCommand::class,
         ];
     }
 

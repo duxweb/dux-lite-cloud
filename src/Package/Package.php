@@ -10,7 +10,6 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Support\Collection;
 use Nette\Utils\FileSystem;
-use Noodlehaus\Config;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\ArrayInput;
@@ -310,11 +309,11 @@ class Package
     {
         $output->writeln('<info>Composer installation</info>');
         $childInput = new ArrayInput([
-            'command' => 'package:composer',
+            'command' => 'composer',
             'cmd' => 'update',
         ]);
         try {
-            $application->find('package:composer')->run($childInput, $output);
+            $application->find('composer')->run($childInput, $output);
         } catch (\Exception $e) {
             $output->writeln('<fg=yellow>' . $e->getMessage() . '</>');
         }

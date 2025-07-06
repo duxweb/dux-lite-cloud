@@ -14,7 +14,7 @@ class ComposerCommand extends Command
     protected function configure(): void
     {
         $this
-            ->setName('package:composer')
+            ->setName('composer')
             ->setDescription('Execute composer commands via local vendor installation.')
             ->addArgument('cmd', InputArgument::IS_ARRAY | InputArgument::REQUIRED, 'The composer command to run.')
             ->setHelp('This command allows you to run composer commands using the local vendor installation...');

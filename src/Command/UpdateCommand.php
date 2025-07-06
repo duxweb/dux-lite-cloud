@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Core\Cloud\Command;
 
+use Core\Cloud\Package\Add;
 use Core\Cloud\Package\Package;
-use Core\Cloud\Package\Update;
 use Core\Cloud\Service\ConfigService;
 use Nette\Utils\FileSystem;
 use Symfony\Component\Console\Command\Command;
@@ -18,21 +18,26 @@ class UpdateCommand extends Command
     protected function configure(): void
     {
         $this
-            ->setName('app:update')
-            ->setDescription('Update the application')
+            ->setName('update')
+            ->setDescription('updated package')
         ->addArgument(
             'name',
             InputArgument::OPTIONAL,
-            'please enter the app name'
+            'please enter the package name'
         );
     }
 
     public function execute(InputInterface $input, OutputInterface $output): int
     {
-        $app = $input->getArgument('name');
+        $name = $input->getArgument('name');
 
         try {
-            Update::main($output, $app);
+            if ($name) {
+                [$name, $ver] = explode(':', $name);
+                Add::main($output, [$name => $ver ?: 'latest'], true);
+            } else {
+                Add::main($output, [], true);
+            }
         } finally {
             FileSystem::delete(ConfigService::getTempDir());
         }
