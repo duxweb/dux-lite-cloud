@@ -93,6 +93,25 @@ composer require duxweb/dux-lite-cloud
 
 > **示例**: 如果你的模块位于 `app/User/` 目录下，使用 `./dux push user` 命令发布
 
+**发布流程**:
+1. 输入新版本号
+2. 输入更新日志（支持多行）：
+   - 支持多行输入，每行一个更新项
+   - 连续按两次回车结束输入
+   - 如果不输入任何内容，系统会自动添加默认的 "- Update" 记录
+3. 系统会自动生成或更新模块目录下的 `CHANGELOG.md` 文件
+4. 自动打包并上传到云端仓库
+
+**更新日志输入示例**:
+```
+Please enter the changelog for this version (press Enter twice to finish, or leave empty for default):
+> - 新增用户权限管理功能
+> - 修复登录状态检查bug
+> - 优化数据库查询性能
+>
+>
+```
+
 #### Composer命令
 ```bash
 # 执行composer命令
@@ -147,6 +166,32 @@ return [
 ```
 
 > **注意**: 使用 `./dux push module-folder` 命令时，系统会自动读取对应模块目录下的 `app.json` 文件获取模块信息。
+
+### CHANGELOG.md (模块目录)
+模块更新日志文件，记录版本变更历史，位于 `app/ModuleName/CHANGELOG.md`：
+
+```markdown
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+## [1.2.0] - 2024-01-15
+
+- 新增用户权限管理功能
+- 修复登录状态检查bug
+- 优化数据库查询性能
+
+## [1.1.0] - 2024-01-10
+
+- 添加多语言支持
+- 更新UI界面设计
+
+## [1.0.0] - 2024-01-05
+
+- Update
+```
+
+> **自动生成**: 使用 `./dux push` 命令发布时，如果输入了更新日志，系统会自动生成或更新此文件。
 
 ### app.lock
 应用锁定文件，记录已安装包的详细信息：

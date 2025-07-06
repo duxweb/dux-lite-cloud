@@ -59,6 +59,38 @@ class PushCommand extends Command
             return Command::FAILURE;
         }
 
+        // 获取更新日志
+        $io->writeln('Please enter the changelog for this version (press Enter twice to finish, or leave empty for default):');
+        $changelogLines = [];
+        $emptyLineCount = 0;
+
+        while (true) {
+            $line = $io->ask('> ');
+
+            if (empty($line)) {
+                $emptyLineCount++;
+                if ($emptyLineCount >= 2 || (empty($changelogLines) && $emptyLineCount >= 1)) {
+                    break;
+                }
+                $changelogLines[] = '';
+            } else {
+                $emptyLineCount = 0;
+                $changelogLines[] = $line;
+            }
+        }
+
+        // 处理输入的更新日志
+        $changelog = trim(implode("\n", $changelogLines));
+
+        // 如果没有输入更新日志，使用默认值
+        if (empty($changelog)) {
+            $changelog = '- Update';
+        }
+
+        // 生成或更新 CHANGELOG.md
+        $this->updateChangelog($app, $version, $changelog);
+        $io->success('Changelog updated successfully');
+
         $config['version'] = $version;
         Package::saveJson($configPath, $config);
 
@@ -161,5 +193,44 @@ class PushCommand extends Command
         $io->newLine();
         $io->success('Publish Application Success');
         return Command::SUCCESS;
+    }
+
+    /**
+     * 更新或创建 CHANGELOG.md 文件
+     */
+    private function updateChangelog(string $app, string $version, string $changelog): void
+    {
+        $appDir = app_path(ucfirst($app));
+        $changelogPath = $appDir . '/CHANGELOG.md';
+        $date = date('Y-m-d');
+
+        // 新的更新日志条目
+        $newEntry = "## [{$version}] - {$date}\n\n{$changelog}\n\n";
+
+        if (file_exists($changelogPath)) {
+            // 如果文件存在，读取现有内容
+            $existingContent = file_get_contents($changelogPath);
+
+            // 检查是否已有标题
+            if (strpos($existingContent, '# Changelog') === false) {
+                // 如果没有标题，添加标题
+                $content = "# Changelog\n\nAll notable changes to this project will be documented in this file.\n\n" . $newEntry . $existingContent;
+            } else {
+                // 在第一个 ## 之前插入新条目
+                $headerEnd = strpos($existingContent, "\n## ");
+                if ($headerEnd !== false) {
+                    $content = substr($existingContent, 0, $headerEnd + 1) . "\n" . $newEntry . substr($existingContent, $headerEnd + 1);
+                } else {
+                    // 如果没有找到其他版本，直接追加
+                    $content = $existingContent . "\n" . $newEntry;
+                }
+            }
+        } else {
+            // 如果文件不存在，创建新文件
+            $content = "# Changelog\n\nAll notable changes to this project will be documented in this file.\n\n" . $newEntry;
+        }
+
+        // 写入文件
+        file_put_contents($changelogPath, $content);
     }
 }
