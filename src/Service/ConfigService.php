@@ -83,9 +83,14 @@ class ConfigService
 
     private static function getDefaultConfig(): array
     {
+        $apiUrl = trim((string)App::config('use')->get('cloud.url', ''));
+        if (!$apiUrl) {
+            $apiUrl = 'https://cloud.dux.plus';
+        }
+
         return [
             'api' => [
-                'url' => 'https://cloud.dux.plus',
+                'url' => $apiUrl,
                 'timeout' => 30,
                 'retries' => 3,
             ],
