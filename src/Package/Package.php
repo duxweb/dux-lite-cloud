@@ -79,6 +79,7 @@ class Package
         $response = $client->get($data['url'], [
             'sink' => $packageFile,
             'timeout' => ConfigService::getTimeout(),
+            'verify' => false,
             'progress' => function (
                 $downloadTotal,
                 $downloadedBytes,
@@ -323,6 +324,8 @@ class Package
     {
         $client = new Client([
             'timeout' => ConfigService::getTimeout(),
+            'verify' => false,
+
         ]);
         try {
             $response = $client->request($method, ConfigService::getApiUrl() . $path, $params);
