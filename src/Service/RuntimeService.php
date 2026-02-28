@@ -55,18 +55,49 @@ class RuntimeService
         ];
 
         foreach ($candidates as $binary) {
-            if ($binary === '') {
-                continue;
-            }
-            if (str_contains($binary, DIRECTORY_SEPARATOR)) {
-                if (!is_file($binary)) {
+            foreach (self::expandPhpCandidates($binary) as $candidate) {
+                if (self::isFpmBinary($candidate)) {
                     continue;
                 }
-                return $binary;
+                if (str_contains($candidate, DIRECTORY_SEPARATOR)) {
+                    if (!is_file($candidate)) {
+                        continue;
+                    }
+                    return $candidate;
+                }
+                return $candidate;
             }
-            return $binary;
         }
 
         throw new \Exception('PHP CLI binary not found');
+    }
+
+    private static function expandPhpCandidates(string $binary): array
+    {
+        $binary = trim($binary);
+        if ($binary === '') {
+            return [];
+        }
+
+        $candidates = [$binary];
+        if (!str_contains($binary, DIRECTORY_SEPARATOR)) {
+            return $candidates;
+        }
+
+        if (self::isFpmBinary($binary)) {
+            $suffix = DIRECTORY_SEPARATOR === '\\' ? '.exe' : '';
+            $rootDir = dirname(dirname($binary));
+            $candidates[] = $rootDir . DIRECTORY_SEPARATOR . 'bin' . DIRECTORY_SEPARATOR . 'php' . $suffix;
+            $candidates[] = dirname($binary) . DIRECTORY_SEPARATOR . 'php' . $suffix;
+            $candidates[] = str_ireplace('php-fpm', 'php', $binary);
+        }
+
+        return array_values(array_unique($candidates));
+    }
+
+    private static function isFpmBinary(string $binary): bool
+    {
+        $name = strtolower(basename(trim($binary)));
+        return $name === 'php-fpm' || $name === 'php-fpm.exe';
     }
 }
