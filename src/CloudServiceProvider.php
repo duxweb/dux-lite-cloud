@@ -10,9 +10,6 @@ use Core\Cloud\Command\InstallCommand;
 use Core\Cloud\Command\UninstallCommand;
 use Core\Cloud\Command\UpdateCommand;
 use Core\Cloud\Command\PushCommand;
-use Core\Cloud\Command\AppUninstallCommand;
-use Core\Cloud\Command\AppInstallCommand;
-use Core\Cloud\Command\AppUpdateCommand;
 use Core\Plugin\PluginProvider;
 
 class CloudServiceProvider implements PluginProvider
@@ -26,10 +23,6 @@ class CloudServiceProvider implements PluginProvider
 
             InstallCommand::class,
             UninstallCommand::class,
-
-            AppInstallCommand::class,
-            AppUpdateCommand::class,
-            AppUninstallCommand::class,
         ];
     }
 

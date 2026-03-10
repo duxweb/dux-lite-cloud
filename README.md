@@ -50,37 +50,6 @@ composer require duxweb/dux-lite-cloud
 ./dux update package-name:1.2.0
 ```
 
-### 应用集合包管理命令
-
-> **说明**: `app:` 开头的命令用于管理应用集合包，一个应用集合包可能包含多个相关的功能包。
-
-#### 安装应用集合包
-```bash
-# 安装应用集合包
-./dux app:add app-name
-
-# 安装应用集合包并编译UI
-./dux app:add app-name --build=true
-```
-
-#### 卸载应用集合包
-```bash
-# 卸载应用集合包
-./dux app:del app-name
-
-# 卸载应用集合包并编译UI
-./dux app:del app-name --build=true
-```
-
-#### 更新应用集合包
-```bash
-# 更新所有应用集合包
-./dux app:update
-
-# 更新指定应用集合包
-./dux app:update app-name
-```
-
 ### 开发者命令
 
 #### 发布应用
@@ -205,5 +174,4 @@ All notable changes to this project will be documented in this file.
 ## 许可证
 
 MIT License
-
 
